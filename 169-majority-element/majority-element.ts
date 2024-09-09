@@ -1,13 +1,16 @@
 function majorityElement(nums: number[]): number {
-    let store = []
+    let count = 0;
+    let candidate = null;
 
     for (let num of nums) {
-        store[num] = store[num] ? store[num] + 1 : 1
+        if (count === 0) {
+            candidate = num;
+        }
+
+        if (count > nums.length) return candidate
+        
+        count += (num === candidate) ? 1 : -1;
     }
 
-    for (let num in store) {
-        if (store[num] > nums.length / 2) {
-            return parseInt(num);
-        }
-    }
-};
+    return candidate;
+}
