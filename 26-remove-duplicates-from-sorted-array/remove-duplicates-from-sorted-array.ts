@@ -1,14 +1,12 @@
 function removeDuplicates(nums: number[]): number {
-    let previousNumber;
+    let index = 1;
 
-    for(let i = 0; i < nums.length; i++) {
-        if(nums[i] == previousNumber) {
-            nums.splice(i, 1)
-            i--
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] !== nums[i - 1]) {
+            nums[index] = nums[i];
+            index++;
         }
-
-        previousNumber = nums[i];
     }
 
-    return nums.length;
-};
+    return index;
+}
