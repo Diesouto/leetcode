@@ -1,13 +1,13 @@
 function majorityElement(nums: number[]): number {
     let count = 0
-    let candidate
+    let candidate = null
 
     for (let num of nums) {
-        if(count == 0) {
+        if(count === 0) {
             candidate = num
         }
 
-        candidate == num ? count++ : count--
+        count += (num === candidate) ? 1 : -1;
     }
 
     return candidate
