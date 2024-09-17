@@ -8,13 +8,14 @@ function mySqrt(x: number): number {
     // Binary search
     while (left <= right) {
         let mid = Math.floor(left + (right - left) / 2);
+        let square = mid * mid;
         
         // Check if mid * mid equals x
-        if (mid * mid === x) {
+        if (square === x) {
             return mid;
         } 
         // If mid * mid is less than x, search in the right half
-        else if (mid * mid < x) {
+        else if (square < x) {
             left = mid + 1;
             result = mid;  // Keep track of the current closest result
         } 
