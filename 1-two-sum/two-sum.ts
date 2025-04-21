@@ -1,19 +1,16 @@
 function twoSum(nums: number[], target: number): number[] {
-    let found = false;
-    let currentNum = 0;
-    let comparator1, comparator2;
+    const seen = new Map<number, number>();
 
-    while (!found) {
-        comparator1 = nums[currentNum];
+    for (let i = 0; i < nums.length; i++) {
+        const num = nums[i];
+        const complement = target - num;
 
-        for(let i = currentNum + 1; i < nums.length; i++) {
-            comparator2 = nums[i]
-
-            if(comparator1 + comparator2 === target) {
-                return [currentNum, i]
-            }
+        if (seen.has(complement)) {
+            return [seen.get(complement)!, i];
         }
 
-        currentNum++;
+        seen.set(num, i);
     }
-};
+
+    return [];
+}
