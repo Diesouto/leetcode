@@ -1,18 +1,21 @@
 function isValid(s: string): boolean {
-    const parenthesesMap = {
-        ')': '(',
-        '}': '{',
-        ']': '['
+    const mapValues = {
+        '(': ')',
+        '[': ']',
+        '{': '}'
     }
-    const openingParenthesesStack = []
 
-    for (let parentheses of s) {
-        if (['(','{','['].includes(parentheses)) {
-            openingParenthesesStack.push(parentheses)
-        } else if (parenthesesMap[parentheses] !== openingParenthesesStack.pop()) {
-            return false
+    let compareStack = []
+
+    for(let c of s) {
+        if(mapValues[c]) {
+            compareStack.push(c)
+        }
+        else {
+            let last = compareStack.pop();
+            if (mapValues[last] !== c) return false;
         }
     }
-
-    return openingParenthesesStack.length === 0
+    
+    return compareStack.length === 0;
 };
